@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Mineral {
+  id               String    @id @default(auto()) @map("_id") @test.ObjectId
+  name             String
+  description      String
+  kind             String
+  class            String?
+  chemicalFormula  String
+  hardness         Float
+  density          String
+  streak           String
+  luster           String
+  cleavage         String?
+  fracture         String[]
+  colors           String[]
+  malleability     String?
+  crystals         String
+  cut              String[]
+  occurrences      String[]
+  image            String?
+}
