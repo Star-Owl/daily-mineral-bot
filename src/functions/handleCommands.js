@@ -3,9 +3,10 @@ import { getRandomMineral } from './getMinerals.js'
 import { createMineralEmbed } from './createMineralEmbed.js'
 import getReminderMessage from './getReminderMessage.js'
 const getSecondsText = (seconds) => (seconds === 1 ? 'second' : 'seconds')
+import config from '../config.js'
 
 export const handleTimeCommand = async (message) => {
-    let counter = 5
+    let counter = config.reminderRemove
     const botMessage = await message.reply({
         content: `${getReminderMessage()} \n\nThis message will be deleted in ${counter} ${getSecondsText(counter)}!`,
     })

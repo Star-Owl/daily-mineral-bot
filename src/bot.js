@@ -1,12 +1,11 @@
 import 'dotenv/config'
 import { Client, GatewayIntentBits } from 'discord.js'
 import newMinerals from './data/new_minerals.json' assert { type: 'json' }
+import config from './config.js'
 
 //functions
 import { handleSheduleFunction } from './functions/shedule.js'
 import { handleMineralCommand, handleTimeCommand } from './functions/handleCommands.js'
-
-const { BOT_TOKEN, CHANNEL_ID, AUTHOR_ID } = process.env
 
 const client = new Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages],
@@ -25,8 +24,8 @@ client.on('messageCreate', async (message) => {
             await handleTimeCommand(message)
             break
         case '!mineral':
-            if (message.author.id !== AUTHOR_ID) return
-            const author = client.users.cache.get(AUTHOR_ID)
+            if (message.author.id !== config.authorId) return
+            const author = client.users.cache.get(config.authorId)
             handleMineralCommand(message, author, newMinerals)
             break
     }
@@ -37,9 +36,9 @@ client.once('ready', () => {
 
     setPresence('Your daily dose of minerals. 💎', 4, 'dnd')
 
-    const channel = client.channels.cache.get(CHANNEL_ID)
+    const channel = client.channels.cache.get(config.channelId)
 
     handleSheduleFunction(channel)
 })
 
-client.login(BOT_TOKEN)
+client.login(config.token)
