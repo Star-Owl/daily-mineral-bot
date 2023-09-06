@@ -1,9 +1,9 @@
-import newMinerals from '../data/new_minerals.json' assert { type: 'json' }
 import { getRandomMineral } from './getMinerals.js'
 import { createMineralEmbed } from './createMineralEmbed.js'
 import getReminderMessage from './getReminderMessage.js'
-const getSecondsText = (seconds) => (seconds === 1 ? 'second' : 'seconds')
 import config from '../config.js'
+
+const getSecondsText = (seconds) => (seconds === 1 ? 'second' : 'seconds')
 
 export const handleTimeCommand = async (message) => {
     let counter = config.reminderRemove
