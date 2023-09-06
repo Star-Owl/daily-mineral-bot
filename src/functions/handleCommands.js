@@ -1,4 +1,4 @@
-import newMinerals from '../data/minerals.json' assert { type: 'json' }
+import newMinerals from '../data/new_minerals.json' assert { type: 'json' }
 import { getRandomMineral } from './getMinerals.js'
 import { createMineralEmbed } from './createMineralEmbed.js'
 import getReminderMessage from './getReminderMessage.js'
@@ -30,14 +30,14 @@ export const handleTimeCommand = async (message) => {
  * @param {string} message - The message content.
  * @param {object} author - The author of the message.
  */
-export const handleMineralCommand = (message, author) => {
-    if (newMinerals.length === 0) {
+export const handleMineralCommand = (message, author, data) => {
+    if (data.length === 0) {
         return message.channel.send({
             content: `Unknown Mineral\n\n This mineral is unknown because the database is currently empty.`,
         })
     }
 
-    const randomMineral = getRandomMineral(newMinerals)
+    const randomMineral = getRandomMineral(data)
     const mineralEmbed = createMineralEmbed(randomMineral, author)
 
     message.channel.send({
