@@ -41,7 +41,7 @@ A Discord bot designed to provide users with a daily dose of mineral knowledge.
 
 ## Contributing 🤝
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/Hasira/daily-mineral-bot/issues) for open issues or initiate a new one. 
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/Star-Owl/daily-mineral-bot/issues) for open issues or initiate a new one. 
 
 ## License 📄
 
