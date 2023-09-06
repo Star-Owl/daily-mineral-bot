@@ -35,8 +35,7 @@ A Discord bot designed to provide users with a daily dose of mineral knowledge.
        authorId: process.env.AUTHOR_ID,   // ID of the bot's author
    }
         
-   export default config;
-```
+   export default config;```
 
 4. **Start the bot:**
     ```
