@@ -4,7 +4,7 @@ import { createMineralEmbed } from './createMineralEmbed.js'
 import getReminderMessage from './getReminderMessage.js'
 import config from '../config.js'
 
-export const handleSheduleFunction = (channel) => {
+export const handleSheduleFunction = (channel, author, data) => {
     schedule.scheduleJob(`${config.reminderMinute} ${config.reminderHour} * * *`, async function () {
         channel.send({
             content: getReminderMessage(),
@@ -12,8 +12,8 @@ export const handleSheduleFunction = (channel) => {
     })
 
     schedule.scheduleJob(`${config.postingMinute} ${config.postingHour} * * *`, async function () {
-        const randomMineral = getRandomMineral(minerals)
-        const mineralEmbed = createMineralEmbed(randomMineral)
+        const randomMineral = getRandomMineral(data)
+        const mineralEmbed = createMineralEmbed(randomMineral, author)
         console.log(`${randomMineral.name} mineral has been chosen!`)
 
         channel.send({

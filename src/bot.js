@@ -16,10 +16,22 @@ const setPresence = (content, type, status) => {
     client.user.setPresence({ activities: [{ name: content, type: type }], status: status })
 }
 
+let author
+
+client.once('ready', async () => {
+    console.log(`${client.user.tag} has logged in!`)
+    author = await client.users.fetch(config.authorId)
+
+    setPresence('Your daily dose of minerals. 💎', 4, 'dnd')
+
+    const channel = client.channels.cache.get(config.channelId)
+
+    handleSheduleFunction(channel, author, minerals)
+})
+
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return
     const command = message.content.toLowerCase()
-    const author = client.users.cache.get(config.authorId)
 
     switch (command) {
         case '!time':
@@ -34,16 +46,6 @@ client.on('messageCreate', async (message) => {
             handleMineralCommand(message, author, newMinerals)
             break
     }
-})
-
-client.once('ready', () => {
-    console.log(`${client.user.tag} has logged in!`)
-
-    setPresence('Your daily dose of minerals. 💎', 4, 'dnd')
-
-    const channel = client.channels.cache.get(config.channelId)
-
-    handleSheduleFunction(channel)
 })
 
 client.login(config.token)
