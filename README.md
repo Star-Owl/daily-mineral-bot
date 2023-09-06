@@ -31,7 +31,7 @@ A Discord bot designed to provide users with a daily dose of mineral knowledge.
 
 4. **Start the bot:**
     ```
-    npm start
+    node src/bot.js
     ```
 
 ## Commands 🤖
