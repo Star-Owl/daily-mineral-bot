@@ -22,12 +22,21 @@ A Discord bot designed to provide users with a daily dose of mineral knowledge.
     npm install
     ```
 
-3. **Configure Environment Variables:** Create a `.env` file in the root directory and add your Discord bot token, channel ID, and author ID.
-    ```
-    BOT_TOKEN=YOUR_DISCORD_BOT_TOKEN
-    CHANNEL_ID=YOUR_DISCORD_CHANNEL_ID
-    AUTHOR_ID=YOUR_DISCORD_AUTHOR_ID
-    ```
+3. **Configuration:** You can configure the bot using the `config.js` file. Here are the available settings:
+   ```javascript
+   const config = {
+       postingHour: 15,                   // 24-hour format
+       postingMinute: 0,
+       reminderHour: 14,                  // 24-hour format
+       reminderMinute: 30,
+       reminderRemove: 5,                 // Duration in seconds before the reminder is removed
+       token: process.env.BOT_TOKEN,      // Your bot's token
+       channelId: process.env.CHANNEL_ID, // ID of the channel where the bot should post
+       authorId: process.env.AUTHOR_ID,   // ID of the bot's author
+   }
+        
+   export default config;
+   ```
 
 4. **Start the bot:**
     ```
