@@ -13,7 +13,7 @@ A Discord bot designed to provide users with a daily dose of mineral knowledge.
 
 1. **Clone the repository:**
     ```
-    git clone https://github.com/your-username/daily-mineral-bot.git
+    git clone https://github.com/Star-Owl/daily-mineral-bot.git
     cd daily-mineral-bot
     ```
 
