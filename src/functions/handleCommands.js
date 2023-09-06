@@ -8,7 +8,6 @@ const getSecondsText = (seconds) => (seconds === 1 ? 'second' : 'seconds')
 export const handleTimeCommand = async (receivedMessage) => {
     let counter = config.reminderRemove
 
-    // Tworzymy odpowiedź bota i zapisujemy ją w zmiennej botMessage
     const botMessage = await receivedMessage.reply({
         content: `${getReminderMessage()} \n\nThis message will be deleted in ${counter} ${getSecondsText(counter)}!`,
     })
