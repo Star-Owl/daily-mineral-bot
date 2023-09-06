@@ -29,21 +29,21 @@ client.once('ready', async () => {
     handleSheduleFunction(channel, author, minerals)
 })
 
-client.on('messageCreate', async (message) => {
-    if (message.author.bot) return
-    const command = message.content.toLowerCase()
+client.on('messageCreate', async (receivedMessage) => {
+    if (receivedMessage.author.bot) return
+    const command = receivedMessage.content.toLowerCase()
 
     switch (command) {
         case '!time':
-            await handleTimeCommand(message)
+            await handleTimeCommand(receivedMessage)
             break
         case '!mineral':
-            if (message.author.id !== config.authorId) return
-            handleMineralCommand(message, author, minerals)
+            if (receivedMessage.author.id !== config.authorId) return
+            handleMineralCommand(receivedMessage, author, minerals)
             break
         case '!mineral_test':
-            if (message.author.id !== config.authorId) return
-            handleMineralCommand(message, author, newMinerals)
+            if (receivedMessage.author.id !== config.authorId) return
+            handleMineralCommand(receivedMessage, author, newMinerals)
             break
     }
 })

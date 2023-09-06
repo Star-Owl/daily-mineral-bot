@@ -5,21 +5,41 @@ import config from '../config.js'
 
 const getSecondsText = (seconds) => (seconds === 1 ? 'second' : 'seconds')
 
-export const handleTimeCommand = async (message) => {
+export const handleTimeCommand = async (receivedMessage) => {
     let counter = config.reminderRemove
-    const botMessage = await message.reply({
+
+    // Tworzymy odpowiedź bota i zapisujemy ją w zmiennej botMessage
+    const botMessage = await receivedMessage.reply({
         content: `${getReminderMessage()} \n\nThis message will be deleted in ${counter} ${getSecondsText(counter)}!`,
     })
-    const interval = setInterval(() => {
+
+    const interval = setInterval(async () => {
         counter--
+
         if (counter <= 0) {
             clearInterval(interval)
-            botMessage.delete().catch(console.error)
-            message.delete().catch(console.error)
-        } else {
-            botMessage.edit(
+
+            try {
+                await botMessage.delete()
+            } catch (error) {
+                console.error("Error deleting the bot's message:", error)
+            }
+
+            try {
+                await receivedMessage.delete()
+            } catch (error) {
+                console.error("Error deleting the user's message:", error)
+            }
+
+            return
+        }
+
+        try {
+            await botMessage.edit(
                 `${getReminderMessage()} \n\nThis message will be deleted in ${counter} ${getSecondsText(counter)}!`
             )
+        } catch (error) {
+            console.error("Error editing the bot's message:", error)
         }
     }, 1000)
 }
