@@ -46,7 +46,8 @@ A Discord bot designed to provide users with a daily dose of mineral knowledge.
 ## Commands 🤖
 
 - `!time`: Displays a message with the time of the next mineral dose, which will be automatically deleted after a few seconds.
-- `!mineral` (Debug Command): Displays detailed information about a randomly selected mineral. This is primarily for testing new minerals.
+- `!mineral` (Debug Command): Displays detailed information about a randomly selected mineral. This is primarily for testing minerals.
+- `!mineral_test` (Debug Command): Displays detailed information about a randomly selected mineral. This is primarily for testing new minerals.
 
 ## Contributing 🤝
 
