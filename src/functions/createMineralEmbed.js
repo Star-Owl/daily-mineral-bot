@@ -9,7 +9,7 @@ export const createMineralEmbed = (mineral, author) => {
             { name: 'Type', value: mineral.kind || 'N/A', inline: true },
             { name: 'Class', value: mineral.class || 'N/A', inline: true },
             { name: 'Chemical Formula', value: mineral.chemicalFormula || 'N/A', inline: true },
-            { name: 'Hardness', value: mineral.hardness.toString() || 'N/A', inline: true },
+            { name: 'Hardness', value: mineral.hardness || 'N/A', inline: true },
             { name: 'Density', value: mineral.density || 'N/A', inline: true },
             { name: 'Streak', value: mineral.streak || 'N/A', inline: true },
             { name: 'Luster', value: mineral.luster || 'N/A', inline: true },
@@ -17,7 +17,8 @@ export const createMineralEmbed = (mineral, author) => {
             { name: 'Fracture', value: mineral.fracture.join(', ') || 'N/A', inline: true },
             { name: 'Colors', value: mineral.colors.join(', ') || 'N/A', inline: true },
             { name: 'Crystals', value: mineral.crystals || 'N/A', inline: true },
-            { name: 'Cut', value: mineral.cut.join(', ') || 'N/A', inline: true }
+            { name: 'Cut', value: mineral.cut.join(', ') || 'N/A', inline: true },
+            { name: 'Occurrences', value: mineral.occurrences.join(', ') || 'N/A', inline: true }
         )
         .setTimestamp()
         .setFooter({
