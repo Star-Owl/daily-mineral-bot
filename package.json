@@ -1,10 +1,10 @@
 {
   "name": "mineral-discord",
-  "version": "1.0.5",
+  "version": "1.1",
   "description": "",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bot": "node src/bot.js"
   },
   "type": "module",
   "author": "Hasiradoo",
