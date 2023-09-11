@@ -1,3 +1,24 @@
+import axios from 'axios'
+
+async function getMineralImage(mineralName) {
+    const response = await axios.get(
+        `https://en.wikipedia.org/w/api.php?action=query&titles=${mineralName}&prop=pageimages&format=json&pithumbsize=500`
+    )
+
+    const pages = response.data.query.pages
+    const page = Object.values(pages)[0]
+
+    return page.thumbnail ? page.thumbnail.source : null
+}
+
+export async function generateRandomMineralJson(mineral) {
+    const mineralImage = await getMineralImage(mineral.name)
+
+    mineral.image = mineralImage
+
+    return mineral
+}
+
 let recentlyUsedMinerals = []
 
 export const getRandomMineral = (minerals) => {

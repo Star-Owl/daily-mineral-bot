@@ -1,8 +1,7 @@
-import { getRandomMineral } from './getMinerals.js'
+import { getRandomMineral, generateRandomMineralJson } from './getMinerals.js'
 import { createMineralEmbed } from './createMineralEmbed.js'
 import getReminderMessage from './getReminderMessage.js'
 import config from '../config.js'
-import axios from 'axios'
 
 const getSecondsText = (seconds) => (seconds === 1 ? 'second' : 'seconds')
 
@@ -42,25 +41,6 @@ export const handleTimeCommand = async (receivedMessage) => {
             console.error("Error editing the bot's message:", error)
         }
     }, 1000)
-}
-
-async function getMineralImage(mineralName) {
-    const response = await axios.get(
-        `https://en.wikipedia.org/w/api.php?action=query&titles=${mineralName}&prop=pageimages&format=json&pithumbsize=500`
-    )
-
-    const pages = response.data.query.pages
-    const page = Object.values(pages)[0]
-
-    return page.thumbnail ? page.thumbnail.source : null
-}
-
-async function generateRandomMineralJson(mineral) {
-    const mineralImage = await getMineralImage(mineral.name)
-
-    mineral.image = mineralImage
-
-    return mineral
 }
 
 /**
