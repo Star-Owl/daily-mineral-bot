@@ -3,6 +3,12 @@ import { createMineralEmbed } from './createMineralEmbed.js'
 import getReminderMessage from './getReminderMessage.js'
 import config from '../config.js'
 
+export const handleHelloCommand = async (receivedMessage, member) => {
+    await receivedMessage.reply({
+        content: `Hello ${member}`,
+    })
+}
+
 const getSecondsText = (seconds) => (seconds === 1 ? 'second' : 'seconds')
 
 export const handleTimeCommand = async (receivedMessage) => {
@@ -10,6 +16,7 @@ export const handleTimeCommand = async (receivedMessage) => {
 
     const botMessage = await receivedMessage.reply({
         content: `${getReminderMessage()} \n\nThis message will be deleted in ${counter} ${getSecondsText(counter)}!`,
+        ephemeral: true,
     })
 
     const interval = setInterval(async () => {
@@ -50,11 +57,9 @@ export const handleTimeCommand = async (receivedMessage) => {
  * @param {object} author - The author of the message.
  */
 export const handleMineralCommand = async (message, author, data) => {
-    //await generateRandomMineralJson().then(console.log)
-    //chatCompletion()
     if (data.length === 0) {
-        return message.channel.send({
-            content: `Unknown Mineral\n\n This mineral is unknown because the database is currently empty.`,
+        return await message.reply({
+            content: `Unknown Mineral\n\nThis mineral is unknown because the database is currently empty.`,
         })
     }
 
@@ -62,9 +67,15 @@ export const handleMineralCommand = async (message, author, data) => {
     const updatedMineral = await generateRandomMineralJson(randomMineral)
 
     const mineralEmbed = createMineralEmbed(randomMineral, author)
-    message.channel.send({
-        content: `DEBUG: Daily Mineral: **${randomMineral.name}**\n\n ${randomMineral.description}`,
-        files: [updatedMineral.image], //randomMineral.image
+
+    let replyOptions = {
+        content: `DEBUG: Daily Mineral: **${randomMineral.name}**\n\n${randomMineral.description}`,
         embeds: [mineralEmbed],
-    })
+    }
+
+    if (updatedMineral.image) {
+        replyOptions.files = [updatedMineral.image]
+    }
+
+    await message.reply(replyOptions)
 }
