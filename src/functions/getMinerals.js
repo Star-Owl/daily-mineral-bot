@@ -1,8 +1,17 @@
 import axios from 'axios'
 
 async function getMineralImage(mineralName) {
+    const mineralMap = {
+        'the rock': 'Dwayne_Johnson',
+        dolomite: 'Dolomite_(mineral)',
+        celestine: 'Celestine_(mineral)',
+        feldspar: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Feldspar-Group-291254.jpg',
+    }
+
+    const queryName = mineralMap[mineralName.toLowerCase()] || mineralName
+
     const response = await axios.get(
-        `https://en.wikipedia.org/w/api.php?action=query&titles=${mineralName}&prop=pageimages&format=json&pithumbsize=500`
+        `https://en.wikipedia.org/w/api.php?action=query&titles=${queryName}&prop=pageimages&format=json&pithumbsize=500`
     )
 
     const pages = response.data.query.pages
@@ -14,9 +23,10 @@ async function getMineralImage(mineralName) {
 export async function generateRandomMineralJson(mineral) {
     const mineralImage = await getMineralImage(mineral.name)
 
-    mineral.image = mineralImage
-
-    return mineral
+    return {
+        ...mineral,
+        image: mineralImage,
+    }
 }
 
 let recentlyUsedMinerals = []
