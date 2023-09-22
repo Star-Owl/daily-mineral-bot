@@ -14,11 +14,11 @@ export const createMineralEmbed = (mineral, author) => {
             { name: 'Streak', value: mineral.streak || 'N/A', inline: true },
             { name: 'Luster', value: mineral.luster || 'N/A', inline: true },
             { name: 'Cleavage', value: mineral.cleavage || 'N/A', inline: true },
-            { name: 'Fracture', value: mineral.fracture.join(', ') || 'N/A', inline: true },
-            { name: 'Colors', value: mineral.colors.join(', ') || 'N/A', inline: true },
+            { name: 'Fracture', value: mineral?.fracture?.join(', ') || 'N/A', inline: true },
+            { name: 'Colors', value: mineral?.colors?.join(', ') || 'N/A', inline: true },
             { name: 'Crystals', value: mineral.crystals || 'N/A', inline: true },
-            { name: 'Cut', value: mineral.cut.join(', ') || 'N/A', inline: true },
-            { name: 'Occurrences', value: mineral.occurrences.join(', ') || 'N/A', inline: true }
+            { name: 'Cut', value: mineral?.cut?.join(', ') || 'N/A', inline: true },
+            { name: 'Occurrences', value: mineral?.occurrences?.join(', ') || 'N/A', inline: true }
         )
         .setTimestamp()
         .setFooter({
