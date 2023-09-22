@@ -21,15 +21,15 @@ client.once('ready', async () => {
     console.log(`${client.user.tag} has logged in!`)
     author = await client.users.fetch(config.authorId)
 
-    setPresence('Your daily dose of minerals. 💎', 4, 'dnd')
+    setPresence(`💎 Your daily dose of ${minerals.length} minerals.`, 4, 'dnd')
 
     setInterval(() => {
-        setPresence('Your daily dose of minerals. 💎', 4, 'dnd')
+        setPresence(`💎 Your daily dose of ${minerals.length} minerals.`, 4, 'dnd')
     }, 1000 * 60)
 
     const channel = client.channels.cache.get(config.channelId)
 
-    handleSheduleFunction(channel, author)
+    handleSheduleFunction(channel, author, minerals)
 })
 
 client.on('messageCreate', async (receivedMessage) => {
