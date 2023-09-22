@@ -7,7 +7,7 @@ import config from '../config.js'
 export const handleSheduleFunction = (channel, author, data) => {
     schedule.scheduleJob(`${config.reminderMinute} ${config.reminderHour} * * *`, async function () {
         channel.send({
-            content: getReminderMessage(),
+            content: `<@&${config.roleId}> ${getReminderMessage()}`,
         })
     })
 
@@ -19,10 +19,21 @@ export const handleSheduleFunction = (channel, author, data) => {
 
         console.log(`${randomMineral.name} mineral has been chosen!`)
 
-        channel.send({
-            content: `Daily Mineral: **${randomMineral.name}**\n\n ${randomMineral.description}`,
-            files: [updatedMineral.image],
+        let Options = {
+            content: `Daily Mineral: **${randomMineral.name}**\n\n<@&${config.roleId}>\n\n${randomMineral.description}`,
             embeds: [mineralEmbed],
-        })
+        }
+
+        if (updatedMineral.image) {
+            Options.files = [updatedMineral.image]
+        }
+
+        await channel.send(Options)
+
+        // channel.send({
+        //     content: `Daily Mineral: **${randomMineral.name}**\n\n<@&${config.roleId}>\n\n${randomMineral.description}`,
+        //     files: [updatedMineral.image],
+        //     embeds: [mineralEmbed],
+        // })
     })
 }
