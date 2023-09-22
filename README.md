@@ -25,14 +25,17 @@ A Discord bot designed to provide users with a daily dose of mineral knowledge.
 3. **Configuration:** You can configure the bot using the `config.js` file. Here are the available settings:
    ```javascript
    const config = {
-       postingHour: 15,                   // 24-hour format
+       postingHour: 13,                          // 24-hour format
        postingMinute: 0,
-       reminderHour: 14,                  // 24-hour format
+       reminderHour: 12,                         // 24-hour format
        reminderMinute: 30,
-       reminderRemove: 10,                // Duration in seconds before the reminder is removed
-       token: process.env.BOT_TOKEN,      // Your bot's token
-       channelId: process.env.CHANNEL_ID, // ID of the channel where the bot should post
-       authorId: process.env.AUTHOR_ID,   // ID of the bot's author
+       reminderRemove: 10,                       // Duration in seconds before the reminder is removed
+       token: process.env.BOT_TOKEN,             // Your bot's token
+       channelId: '',                            // ID of the channel where the bot should post
+       authorId: '',                             // ID of the bot's author
+       openaiApiKey: process.env.OPENAI_API_KEY, // Your OpenAI API key
+       roleId: '',                               // ID of the role that should be mentioned when a mineral is posted
+       roleId_admin: '',                         // ID of the admin role !mineral / !mineral_test
    }
         
    export default config;
