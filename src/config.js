@@ -1,7 +1,7 @@
 const config = {
-    postingHour: 13, // 24-hour format
+    postingHour: 11, // 24-hour format
     postingMinute: 0,
-    reminderHour: 12, // 24-hour format
+    reminderHour: 10, // 24-hour format
     reminderMinute: 30,
     reminderRemove: 10, // Duration in seconds before the reminder is removed (!time command)
     token: process.env.BOT_TOKEN, // Your bot's token
