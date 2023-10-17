@@ -4,7 +4,7 @@
   "description": "",
   "main": "bot.js",
   "scripts": {
-    "bot": "node src/bot.js"
+    "start": "node src/bot.js"
   },
   "type": "module",
   "author": "Hasiradoo",
