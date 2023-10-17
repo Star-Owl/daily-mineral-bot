@@ -6,6 +6,18 @@ import minerals from './data/minerals.json' assert { type: 'json' }
 import newMinerals from './data/new_minerals.json' assert { type: 'json' }
 import { handleHelloCommand, handleMineralCommand, handleTimeCommand } from './functions/handleCommands.js'
 import { handleSheduleFunction } from './functions/shedule.js'
+import express from 'express';
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Bot is running');
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 const client = new Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages],
